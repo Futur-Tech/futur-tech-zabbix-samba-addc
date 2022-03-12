@@ -6,7 +6,7 @@ APP_NAME="futur-tech-zabbix-samba"
 REQUIRED_PKG_ARR=( "at" "jq" )
 
 SRC_DIR="/usr/local/src/${APP_NAME}"
-BIN_DIR="/usr/local/src/${APP_NAME}"
+BIN_DIR="/usr/local/bin/${APP_NAME}"
 SUDOERS_ETC="/etc/sudoers.d/${APP_NAME}"
 
 $(which zabbix_agent2 >/dev/null) && ZBX_CONF_AGENT_D="/etc/zabbix/zabbix_agent2.d"
