@@ -1,0 +1,2 @@
+*/15 * * * * /usr/local/bin/futur-tech-zabbix-samba/samba4_ad.sh doJson >/dev/null 2>&1
+0 */2 * * * /usr/local/bin/futur-tech-zabbix-samba/samba4_ad.sh doDbCheck >/dev/null 2>&1

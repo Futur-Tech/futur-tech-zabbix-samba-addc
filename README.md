@@ -1,31 +1,22 @@
-# Template-Samba4-AD
-This is my personale Samba4 AD Template for Zabbix 5
+# Template Zabbix Monitoring Samba
+The main monitoring code is from this repository: https://github.com/Galvy/Template-Samba4-AD
 
-# Introduction
-Until today 26/6/2021 there is no a decent Zabbix Template(my own opinion) for monitoring Samba4 AD so i still using Nagios just for this..until today.
-Enjoy!
-This tempalte is tested wind Zabbix Server 5, Centos 7 DC and Zabbix Agent2
+This fork add automatic deployment script and some more specific sudoer permission to zabbix user.
 
-# Installation
-1) install jq with yum or apt install jq
+## Deploy Commands
 
-sudo apt-get install jq
+Everything is executed by only a few basic deploy scripts. 
 
-2) copy samba4_ad.conf in your zabbix-agent2.d etc folder
+```bash
+cd /usr/local/src
+git clone https://github.com/Futur-Tech/futur-tech-zabbix-samba.git
+cd futur-tech-zabbix-samba
 
-Es: /etc/zabbix/zabbix_agentd2.d/samba4_ad.conf
+./deploy.sh 
+# Main deploy script
 
-3) add zabbix user to sudo with a tool visudo
+./deploy-update.sh -b main
+# This script will automatically pull the latest version of the branch ("main" in the example) and relaunch itself if a new version is found. Then it will run deploy.sh. Also note that any additional arguments given to this script will be passed to the deploy.sh script.
+```
 
-4) allows 'zabbix' user to run all commands without password.
-zabbix ALL=NOPASSWD: ALL
-
-5) Allow active-check in your zabbix_agentd.conf and AllowKey=system.run[*]
-
-6) copy samba4_ad.sh in /usr/local/bin
-
-7) add cron tasks like:
-
-*/15 * * * * /usr/local/bin/samba4_ad.sh doJson > /dev/null 2>&1
-
-0 */2 * * * /usr/local/bin/samba4_ad.sh doDbCheck > /dev/null 2>&1
+Finally import the template XML in Zabbix Server and attach it to your host.
