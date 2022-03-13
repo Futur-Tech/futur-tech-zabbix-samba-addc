@@ -2,7 +2,7 @@
 
 source "$(dirname "$0")/ft-util/ft_util_inc_var"
 
-APP_NAME="futur-tech-zabbix-samba"
+APP_NAME="futur-tech-zabbix-samba-addc"
 REQUIRED_PKG_ARR=( "at" "jq" )
 
 SRC_DIR="/usr/local/src/${APP_NAME}"

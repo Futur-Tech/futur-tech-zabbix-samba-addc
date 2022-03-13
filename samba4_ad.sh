@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUT_DIR=/tmp/zabbix-samba
+OUT_DIR=/tmp/zabbix-samba-addc
 OUT_SHOWREPL=$OUT_DIR/showrepl.json
 OUT_SHOWREPL_STATUS=$OUT_DIR/status
 OUT_DB_STATUS=$OUT_DIR/dbcheck.json
@@ -8,16 +8,16 @@ OUT_DB_STATUS=$OUT_DIR/dbcheck.json
 if [ $# -eq 0 ]
   then
         echo "No arguments supplied, nothing to do!"
-	      echo "Es: ./samba4_ad.sh doJson"
-        echo "Es. ./samba4_ad.sh getJsonStatus"
-        echo "Es. ./samba4_ad.sh getErrorFrom"
-        echo "Es. ./samba4_ad.sh getErrorTo"
-        echo "Es. ./samba4_ad.sh getFromErrorDetails"
-        echo "Es. ./samba4_ad.sh getToErrorDetails"
-        echo "Es. ./samba4_ad.sh getProcessCount"
-        echo "Es: ./samba4_ad.sh doDbCheck"
-        echo "Es. ./samba4_ad.sh getDbStatus"
-        echo "Es. ./samba4_ad.sh getNTDSConnections"
+        echo "./samba4_ad.sh doJson"
+        echo "./samba4_ad.sh getJsonStatus"
+        echo "./samba4_ad.sh getErrorFrom"
+        echo "./samba4_ad.sh getErrorTo"
+        echo "./samba4_ad.sh getFromErrorDetails"
+        echo "./samba4_ad.sh getToErrorDetails"
+        echo "./samba4_ad.sh getProcessCount"
+        echo "./samba4_ad.sh doDbCheck"
+        echo "./samba4_ad.sh getDbStatus"
+        echo "./samba4_ad.sh getNTDSConnections"
 	exit 1
 fi
 
