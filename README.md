@@ -2,6 +2,7 @@
 The main original code is from this repository: https://github.com/Galvy/Template-Samba4-AD
 
 This fork add automatic deployment script and some more specific sudoer permission to zabbix user.
+The template has been update to use Zabbix Active Agent.
 
 ## Deploy Commands
 
