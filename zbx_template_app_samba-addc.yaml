@@ -1,0 +1,381 @@
+zabbix_export:
+  version: '6.0'
+  date: '2023-08-02T18:42:01Z'
+  groups:
+    - uuid: 7f27dc73981940769811e7fae4a26772
+      name: Templates/Futur-Tech/Applications
+  templates:
+    - uuid: a6a152f6cf074d03bad618ac4cc16548
+      template: 'Samba4 AD'
+      name: 'Futur-Tech App Samba Domain Controller'
+      description: |
+        Original git: https://github.com/Galvy/Template-Samba4-AD
+        Futur-Tech: https://github.com/Futur-Tech/futur-tech-zabbix-samba-addc
+      groups:
+        - name: Templates/Futur-Tech/Applications
+      items:
+        - uuid: 36bfed5f227d49199ae841ccdb865bf3
+          name: 'Samba DC: Kerberos'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[88]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: cfe47f96360c4594b7c8bce53f8b0347
+              expression: 'last(/Samba4 AD/net.tcp.listen[88])=0'
+              name: 'Samba DC: Kerberos Error'
+              priority: HIGH
+        - uuid: f0d64213d8fa4acbb5b1aa4e4ccc2c5d
+          name: 'Samba DC: Netbios'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[139]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 9b9e506f26544ae6bd7c6227842b3ac1
+              expression: 'last(/Samba4 AD/net.tcp.listen[139])=0'
+              name: 'Samba DC: Netbios Error'
+              priority: WARNING
+        - uuid: 63dc42d0932e4de588f81c8e8e11ae22
+          name: 'Samba DC: LDAP'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[389]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 33e47ff1529149129432ec792171de9b
+              expression: 'last(/Samba4 AD/net.tcp.listen[389])=0'
+              name: 'Samba DC: LDAP Error'
+              priority: HIGH
+        - uuid: 95566d730adf43778adb4305994d87f0
+          name: 'Samba DC: SMB over TCP'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[445]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 511279db471b44d9b6ca869090544a47
+              expression: 'last(/Samba4 AD/net.tcp.listen[445])=0'
+              name: 'Samba DC: SMB over TCP Error'
+              priority: AVERAGE
+        - uuid: 52de697690974248bba02076950dfb70
+          name: 'Samba DC: Kerberos Change/Set password'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[464]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 1ac8e03830934b44bfd2d8111aab128b
+              expression: 'last(/Samba4 AD/net.tcp.listen[464])=0'
+              name: 'Samba DC: Kerberos Change/Set password Error'
+              priority: WARNING
+        - uuid: a7fdcdf51c0549f5844ff52d6f4db120
+          name: 'Samba DC: LDAPS'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[636]'
+          delay: 15m
+          status: DISABLED
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 50b9633339b940069985d7fb1b4859f8
+              expression: 'last(/Samba4 AD/net.tcp.listen[636])=0'
+              name: 'Samba DC: LDAPS Error'
+              priority: HIGH
+        - uuid: bce75255dbc8484d9699d98e39994096
+          name: 'Samba DC: Global Cataloge'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[3268]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 5eba5ca5a7df4814b63c0c972690f049
+              expression: 'last(/Samba4 AD/net.tcp.listen[3268])=0'
+              name: 'Samba DC: Global Cataloge Error'
+              priority: WARNING
+        - uuid: 78ecb3ebf04948b9a6916816473a7ec2
+          name: 'Samba DC: Global Cataloge SSL'
+          type: ZABBIX_ACTIVE
+          key: 'net.tcp.listen[3269]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 0fbd3f671f07495a90c1ec43bc7562fa
+              expression: 'last(/Samba4 AD/net.tcp.listen[3269])=0'
+              name: 'Samba DC: Global Cataloge SSL Error'
+              priority: WARNING
+        - uuid: 281002d7f3b54744a5bd93ef1e55ef67
+          name: 'Samba DC: DNS'
+          type: ZABBIX_ACTIVE
+          key: 'net.udp.listen[53]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: f3c592c649fe4c03b6c77d42c5b79a27
+              expression: 'last(/Samba4 AD/net.udp.listen[53])=0'
+              name: 'Samba DC: DNS not listening'
+              priority: HIGH
+        - uuid: f51a5b020a9b4b59bea87c7ff4208652
+          name: 'Samba DC: getDbStatus'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getDbStatus]'
+          delay: 60m
+          history: 30d
+          trends: '0'
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: Samba
+        - uuid: a28d518f246e45789b414621c3c00fd2
+          name: 'Samba DC: getJsonStatus'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getJsonStatus]'
+          delay: 15m
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 256230355ab14ca6a5c86bdeb5e2e2d7
+              expression: 'last(/Samba4 AD/samba4cmd[getJsonStatus])=0'
+              name: 'Samba DC: getJsonStatus Error'
+              priority: WARNING
+              description: |
+                0=Error
+                1=Ok
+        - uuid: 8c8022547a994d139228725fa955da1f
+          name: 'Samba "samba" process count'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getProcessCount,samba]'
+          delay: 5m
+          tags:
+            - tag: Application
+              value: Samba
+        - uuid: e2a4d7424f0b456ca4aa00fc4869e79b
+          name: 'Samba: "smbd" process count'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getProcessCount,smbd]'
+          delay: 5m
+          tags:
+            - tag: Application
+              value: Samba
+        - uuid: 58ca48b231ab483ab1af16ac4eef0841
+          name: 'Samba DC: getDb Critical Error'
+          type: DEPENDENT
+          key: SAMBA4_DB_OBJ_CHECK
+          delay: '0'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.SAMBA4_DB_OBJ_CHECK
+          master_item:
+            key: 'samba4cmd[getDbStatus]'
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 679ee02af69447eba0f5feb7be847c63
+              expression: 'last(/Samba4 AD/SAMBA4_DB_OBJ_CHECK)<>1'
+              name: 'Samba DC: getDb Critical Error'
+              priority: HIGH
+        - uuid: 49b1182d302f421fb96ed176a595df81
+          name: 'Samba DC: getDb Error Obj'
+          type: DEPENDENT
+          key: SAMBA4_DB_OBJ_ERROR
+          delay: '0'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.SAMBA4_DB_OBJ_ERROR
+          master_item:
+            key: 'samba4cmd[getDbStatus]'
+          tags:
+            - tag: Application
+              value: Samba
+          triggers:
+            - uuid: 4b962694d3d24206984803306f055898
+              expression: 'last(/Samba4 AD/SAMBA4_DB_OBJ_ERROR)<>0'
+              name: 'Samba DC: getDb Error Obj'
+              priority: HIGH
+              manual_close: 'YES'
+        - uuid: adc74271e4644d91973a05983b1f4eb4
+          name: 'Samba DC: getDb Total Obj'
+          type: DEPENDENT
+          key: SAMBA4_DB_OBJ_TOTAL
+          delay: '0'
+          preprocessing:
+            - type: JSONPATH
+              parameters:
+                - $.SAMBA4_DB_OBJ_TOTAL
+          master_item:
+            key: 'samba4cmd[getDbStatus]'
+          tags:
+            - tag: Application
+              value: Samba
+        - uuid: 9e9a6f4d6dd346dbba33886714c9cbb7
+          name: 'Samba Version'
+          type: ZABBIX_ACTIVE
+          key: 'system.run["samba-tool --version"]'
+          delay: 15m
+          trends: '0'
+          value_type: TEXT
+          tags:
+            - tag: Application
+              value: Samba
+      discovery_rules:
+        - uuid: fb269d2ac0db40b58f737339f9dd9a15
+          name: 'Samba DC: Inbound AD replications discovery'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd["getErrorFrom"]'
+          delay: 15m
+          lifetime: 1h
+          item_prototypes:
+            - uuid: 52fe352f2be741739ea6fc9bfcb42d73
+              name: 'Samba DC: inbound AD replication {#DSA} {#NC_DN}'
+              type: ZABBIX_ACTIVE
+              key: 'samba4cmd[getFromErrorDetails,{#NC_DN},{#DSA_OBJECTGUID}]'
+              preprocessing:
+                - type: JAVASCRIPT
+                  parameters:
+                    - |
+                      var myArray = JSON.parse(value);
+                      for (var i = 0; i < myArray .length; i++){
+                        var obj = myArray[i];
+                        var risultato = "";
+                        for (var key in obj){
+                          var value = obj[key];
+                          var n = key.endsWith("CONSECUTIVE_FAILURES}");
+                          if (n){
+                            risultato = value;
+                          }
+                        }
+                      }
+                      return risultato
+              tags:
+                - tag: Application
+                  value: Samba
+              trigger_prototypes:
+                - uuid: 70188abfbb544a108950e81da9fee019
+                  expression: 'last(/Samba4 AD/samba4cmd[getFromErrorDetails,{#NC_DN},{#DSA_OBJECTGUID}])>0'
+                  name: 'Check Samba DC inbound AD replication {#DSA} {#NC_DN}'
+                  priority: WARNING
+                  manual_close: 'YES'
+        - uuid: aa3f5bef17e74dc9b6a28904ad77f76b
+          name: 'Samba DC: Outbound AD replications discovery'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getErrorTo]'
+          delay: 15m
+          lifetime: 1h
+          item_prototypes:
+            - uuid: 85d564efcce647a8ac71db240060d3f5
+              name: 'Samba DC: outbound AD replication {#DSA} {#NC_DN}'
+              type: ZABBIX_ACTIVE
+              key: 'samba4cmd[getToErrorDetails,{#NC_DN},{#DSA_OBJECTGUID}]'
+              preprocessing:
+                - type: JAVASCRIPT
+                  parameters:
+                    - |
+                      var myArray = JSON.parse(value);
+                      for (var i = 0; i < myArray .length; i++){
+                        var obj = myArray[i];
+                        var risultato = "";
+                        for (var key in obj){
+                          var value = obj[key];
+                          var n = key.endsWith("CONSECUTIVE_FAILURES}");
+                          if (n){
+                            risultato = value;
+                          }
+                        }
+                      }
+                      return risultato
+              tags:
+                - tag: Application
+                  value: Samba
+              trigger_prototypes:
+                - uuid: b1a8ecc9b78c4029adf1b2a0cd6430a0
+                  expression: 'last(/Samba4 AD/samba4cmd[getToErrorDetails,{#NC_DN},{#DSA_OBJECTGUID}])>0'
+                  name: 'Check Samba DC outbound AD replication {#DSA} {#NC_DN}'
+                  priority: WARNING
+                  manual_close: 'YES'
+        - uuid: 1491b8ccf5524c469fb35d38ee442eca
+          name: 'Samba DC: NTDS connections discovery'
+          type: ZABBIX_ACTIVE
+          key: 'samba4cmd[getNTDSConnections]'
+          delay: 15m
+          lifetime: 1h
+          item_prototypes:
+            - uuid: 775f80c088364a0abc4267cdf3010901
+              name: 'Samba DC: NTDS connections to {#DNS_NAME}'
+              type: ZABBIX_ACTIVE
+              key: 'samba4cmd[getNTDSConnectionsDetails,{#NAME}]'
+              delay: 2h
+              history: 30d
+              trends: '0'
+              value_type: TEXT
+              preprocessing:
+                - type: JAVASCRIPT
+                  parameters:
+                    - |
+                      var myArray = JSON.parse(value);
+                      for (var i = 0; i < myArray .length; i++){
+                        var obj = myArray[i];
+                        var risultato = "";
+                        for (var key in obj){
+                          var value = obj[key];
+                          var n = key.endsWith("DNS_NAME}");
+                          if (n){
+                            risultato = value;
+                          }
+                        }
+                      }
+                      return risultato
+              tags:
+                - tag: Application
+                  value: Samba
+      tags:
+        - tag: Futur-Tech
+  graphs:
+    - uuid: 71e13600b2e942b296bf46dafb7e7871
+      name: 'Samba DC: Objects'
+      graph_items:
+        - sortorder: '1'
+          color: FF0000
+          item:
+            host: 'Samba4 AD'
+            key: SAMBA4_DB_OBJ_ERROR
+        - sortorder: '2'
+          color: 4CAF50
+          item:
+            host: 'Samba4 AD'
+            key: SAMBA4_DB_OBJ_TOTAL
+    - uuid: e8a6d653750d4bef9bf430156ec092fa
+      name: 'Samba DC: Process'
+      graph_items:
+        - sortorder: '1'
+          color: FF0000
+          calc_fnc: ALL
+          item:
+            host: 'Samba4 AD'
+            key: 'samba4cmd[getProcessCount,samba]'
+        - sortorder: '2'
+          color: 66BB6A
+          calc_fnc: ALL
+          item:
+            host: 'Samba4 AD'
+            key: 'samba4cmd[getProcessCount,smbd]'
